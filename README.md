@@ -64,13 +64,13 @@ Add a new universityto the database. The user must provided the following:
  * domains
  * alpha_two_code
 
-####*PUT* @app.route('/universities')
+#### *PUT* @app.route('/universities')
 Update the webpage of an existing university in the database. The user must provide the following:
 
  * name
  * web_pages
 
-####*DELETE* @app.route('/universities')
+#### *DELETE* @app.route('/universities')
 Deletes a university record from the database. The user must provide the following:
 
  * name
@@ -151,11 +151,14 @@ certificate, it will let you proceed and visit the site in question, but it will
 
 Generate self-signed certificates easily from the command line using the command given below:
 
+```
 openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 365
+```
 
 This command writes a new certificate in cert.pem with its corresponding private key in key.pem, with a validity period of 365 days. When you run this command, you will be asked a few 
 questions.I answered this as given below:
 
+```
 Generating a 4096 bit RSA private key
 ......................++
 .............++
@@ -175,12 +178,15 @@ Organization Name (eg, company) [Internet Widgits Pty Ltd]:Cloud Computing Mini-
 Organizational Unit Name (eg, section) []:
 Common Name (e.g. server FQDN or YOUR name) []:localhost
 Email Address []:
+```
 
 We can now use this new self-signed certificate in our Flask application by setting the ssl_context argument in app.run() to a tuple with the filenames of the certificate and private key 
 files:
 
+```
  if __name__ == '__main__':
     app.run(host='0.0.0.0', port=443, ssl_context=('cert.pem','key.pem'))
+```
 
 The port number has been set as 443 as we will be serving the application over https. 
 
@@ -292,6 +298,8 @@ POST requests are provided using curl commands on a terminal as given below:
 curl -k -i -H "Content-Type: application/json" -X POST -d '{"id":1289,"domains":"uosl.uk", "country":"United Kingdom", "web_pages": "http://www.uosl.com", "name":"University of South London", "alpha_two_code":"GB"}' https://0.0.0.0:30888/universities
 ```
 
+Response:
+
 ```
 HTTP/1.0 201 CREATED
 Content-Type: application/json
@@ -310,6 +318,8 @@ curl -k -i -H "Content-Type: application/json" -X PUT -d '{"name":"University of
 
 ```
 
+Response:
+
 ```
 HTTP/1.0 200 OK
 Content-Type: application/json
@@ -326,6 +336,8 @@ DELETE requests are provided as given below:
 curl -k -i -H "Content-Type: application/json" -X DELETE -d '{"name":"University of South London"}' https://0.0.0.0:30888/universities
 ```
 
+Response:
+
 ```
 HTTP/1.0 200 OK
 Content-Type: application/json
@@ -340,7 +352,7 @@ Date: Mon, 20 Apr 2020 19:45:16 GMT
 
 * [Cassandra](http://cassandra.apache.org/doc/latest/) - Database used
 * [Flask](http://flask.pocoo.org/docs/1.0/) - Web framework used
-* [Coronavirus COVID19 API](https://covid19api.com/) - External API used
+* [Universities List API](http://universities.hipolabs.com/search) - External API used
 * [Kubernetes](https://microk8s.io/docs/registry-built-in) - Load balancing & Scaling
 * [Encryption & Security](https://blog.miguelgrinberg.com/post/running-your-flask-application-over-https) - TLS protocol using 'adhoc' SSL
 
@@ -348,6 +360,9 @@ Date: Mon, 20 Apr 2020 19:45:16 GMT
 
 * Alenso Joy Valiaveettil
 	
+
+
+
 
 
 
