@@ -25,7 +25,6 @@ This will work on the following aspects of Cloud applications:
 3. The application uses a cloud database for accessing persistent information.
 4. Implemented cloud security measures by Serving the application over https using Self-signed certificate. 
 5. Implementation of load balancing of the application by Kubernetes based Load Balancing. 
-6. Interacting with Web Application
 
 ## Interacting with Web Application 
 ### External API
@@ -33,7 +32,7 @@ This will work on the following aspects of Cloud applications:
 #### *GET* @app.route('/universities/all')
 Get the details of all the universities.
 
-#### *GET* @app.route('/universities/all/view/<country>/<name>')
+#### *GET* @app.route('/universities/all/view/'<'country'>'/'<'name'>'')
 Get the list of all universities in the given country and with a given name
 
 ### REST-based Service Interface
@@ -44,10 +43,10 @@ The Home page of Universities WebApp
 #### *GET* @app.route('/universities')
 Get the list of all universities from the database.
 
-#### *GET* @app.route('/universities/name/<name>')
+#### *GET* @app.route('/universities/name/'<'name'>'')
 Get the list of all universities with a given name. 
 
-#### *GET* @app.route('/universities/country/<country>')
+#### *GET* @app.route('/universities/country/'<'country'>'')
 Get the list of all universities in a given country
 
 #### *POST* @app.route('/universities')
@@ -99,13 +98,13 @@ sudo docker cp universities_stats.csv cassandra-test:/home/universities_stats.cs
 sudo docker exec -it cassandra-test cqlsh
 ```
 
-6. Inside of the Cassandra Terminal create a dedicated keyspace for the universities data to be inserted into.
+6. Inside the Cassandra Terminal create a dedicated keyspace for the universities data to be inserted into.
 
 ```
 CREATE KEYSPACE Universities WITH REPLICATION ={'class' : 'SimpleStrategy', 'replication_factor' : 1};
 ```
 
-7. Create the table inside of the keyspace, specifying all column names and types: 
+7. Create the table inside the keyspace, specifying all column names and types: 
 
 ```
 CREATE TABLE Universities.stats (id int, domains text, country text, web_pages text, name text PRIMARY KEY, alpha_two_code text);
@@ -119,12 +118,13 @@ COPY universities.stats(id,domains,country,web_pages,name,alpha_two_code) FROM '
 
 9. Create requirements.txt, Dockerfile and app.py
 
-Default Port 80 is used to host the application. It is set in app.py as given below:
+10. Default Port 80 is used to host the application. It is set in app.py as given below:
 
 ```
 if __name__ == '__main__':
  	app.run(host='0.0.0.0', port=80)
 ```
+
 11. Build the image
 
 ```
@@ -139,8 +139,9 @@ sudo docker run -p 80:80 cassandrarest:v1
 
  ## Cloud Security - HTTPS Implementation
 
-13. Serve the application over https using Self-signed certificate. 
-A self-signed certificate is one where the signature is generated using the private key that is associated with that same certificate. The client needs to "know and trust" the CA that 
+13. Serve the application over https using Self-signed certificate.
+ 
+A self-signed certificate is the one where the signature is generated using the private key that is associated with that same certificate. The client needs to "know and trust" the CA that 
 signed a certificate, because that trust relationship is what allows the client to validate a server certificate. Web browsers and other HTTP clients come pre-configured with a list of 
 known and trusted CAs, but obviously if you use a self-signed certificate the CA is not going to be known and validation will fail. If the web browser is unable to validate a server 
 certificate, it will let you proceed and visit the site in question, but it will make sure you understand that you are doing it at your own risk.
@@ -344,6 +345,8 @@ Date: Mon, 20 Apr 2020 19:45:16 GMT
 {"message":"University deleted: /universities/University of South London"}
 ```
 
+NOTE: Public DNS will vary. 
+
 ## Universities Web App built with:
 
 * [Cassandra](http://cassandra.apache.org/doc/latest/) - Database used
@@ -354,4 +357,4 @@ Date: Mon, 20 Apr 2020 19:45:16 GMT
 
 ## Author
 
-* Alenso Joy Valiaveettil
+Alenso Joy Valiaveettil
