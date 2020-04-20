@@ -3,15 +3,11 @@ A Flask app using air quality API that needs authentication!
 
 # Universities Web App
 
-Students all over the world are looking for universities to pursue higher education. The purpose of this WebApp is to help people to get a list of 
-universities in different countries, their domain names, web pages etc.. 
-Universities WebApp is a prototype of Cloud application deployed on AWS EC2 instance which provides information about different universities.  This app makes calls to an external API hosted 
-in http://universities.hipolabs.com/search in order get more information about different universities based on country and the university name. 
-
-The project supports an application that is developed in flask and python and deployed on a docker. The data extracted from the application API is stored in a cassandra database. 
-
-The response from the source is in the form of JSON but displayed in human readble HTML format. The information of interest are Name, Country, State-Province, Domains, AlphaTwoCode 
-and Webpages.
+Students all over the world are looking for universities to pursue higher education. The purpose of University WebApp is to help people to get a list of universities in different countries, 
+their domain names, web pages etc.. It is a prototype of Cloud application deployed on AWS EC2 instance. This app makes calls to an external API hosted in http://universities.hipolabs.com/search 
+in order get more information about different universities based on country and the university name. The project supports an application that is developed in flask and python and deployed 
+on a docker. The data extracted from the application API is stored in a cassandra database. The response from the source is in the form of JSON but displayed in human readble HTML format. 
+The information of interest are Name, Country, State-Province, Domains, AlphaTwoCode and Webpages.
 
 Using this app, the user is able to view a list of universities, insert new universities into the list, update the university details and delete the universities. 
 
@@ -55,7 +51,7 @@ Get the list of all universities with a given name.
 Get the list of all universities in a given country
 
 #### *POST* @app.route('/universities')
-Add a new universityto the database. The user must provided the following:
+Add a new university to the database. The user must provided the following:
 
  * name
  * id
@@ -359,14 +355,3 @@ Date: Mon, 20 Apr 2020 19:45:16 GMT
 ## Author
 
 * Alenso Joy Valiaveettil
-	
-
-
-
-
-
-
-
-
-
-
