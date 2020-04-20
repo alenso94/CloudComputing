@@ -34,27 +34,27 @@ This will work on the following aspects of Cloud applications:
 ## Interacting with Web Application 
 ### External API
 
-####*GET* @app.route('/universities/all')
+#### *GET* @app.route('/universities/all')
 Get the details of all the universities.
 
-####*GET* @app.route('/universities/all/view/<country>/<name>')
+#### *GET* @app.route('/universities/all/view/<country>/<name>')
 Get the list of all universities in the given country and with a given name
 
-###REST-based Service Interface
+### REST-based Service Interface
 
-####*GET* @app.route('/')
+#### *GET* @app.route('/')
 The Home page of Universities WebApp
 
-####*GET* @app.route('/universities')
+#### *GET* @app.route('/universities')
 Get the list of all universities from the database.
 
-####*GET* @app.route('/universities/name/<name>')
+#### *GET* @app.route('/universities/name/<name>')
 Get the list of all universities with a given name. 
 
-####*GET* @app.route('/universities/country/<country>')
+#### *GET* @app.route('/universities/country/<country>')
 Get the list of all universities in a given country
 
-####*POST* @app.route('/universities')
+#### *POST* @app.route('/universities')
 Add a new universityto the database. The user must provided the following:
 
  * name
@@ -141,7 +141,7 @@ sudo docker build . --tag=cassandrarest:v1
 sudo docker run -p 80:80 cassandrarest:v1
 ```
 
-Cloud Security - HTTPS Implementation
+ ## Cloud Security - HTTPS Implementation
 
 13. Serve the application over https using Self-signed certificate. 
 A self-signed certificate is one where the signature is generated using the private key that is associated with that same certificate. The client needs to "know and trust" the CA that 
@@ -186,30 +186,40 @@ The port number has been set as 443 as we will be serving the application over h
 
 14. Build the image and run it as a service, exposing the deployment to get an external IP. 
 
+```
 sudo docker build . --tag=cassandrarest:v1
 
 sudo docker run -p 443:443 cassandrarest:v1
+```
 
-Kubernetes Deployment
+ ## Kubernetes Deployment
 
 15. Inorder to implement kubernetes based LoadBalancer, install kubernetes using the command given below:
 	
+```
 sudo snap install microk8s --channel=1.18 --classic
+```
 
 16. Having a private Docker registry can significantly improve your productivity by reducing the time spent in uploading and downloading Docker images. The registry shipped with MicroK8s is 
 hosted within the Kubernetes cluster and is exposed as a NodePort service on port 32000 of the localhost. 
 
 Install the registry using the command given below:
 
+```
 microk8s enable registry
+```
 
 17. To upload images we have to tag them with localhost:32000/your-image before pushing them. Add proper tagging using build as given below:
 
+```
 sudo docker build . -t localhost:32000/cassandra:registry
+```
 
 18. Push the image to the registry as it has been tagged correctly.
 
+```
 sudo docker push localhost:32000/cassandra
+```
 
 19. Pushing to this insecure registry may fail in some versions of Docker unless the daemon is explicitly configured to trust this registry. To address this we need to edit /etc/docker/daemon.json and add:
 
@@ -337,3 +347,11 @@ Date: Mon, 20 Apr 2020 19:45:16 GMT
 ## Author
 
 * Alenso Joy Valiaveettil
+	
+
+
+
+
+
+
+
