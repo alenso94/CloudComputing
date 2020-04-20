@@ -32,7 +32,7 @@ This will work on the following aspects of Cloud applications:
 #### *GET* @app.route('/universities/all')
 Get the details of all the universities.
 
-#### *GET* @app.route('/universities/all/view/'<'country'>'/'<'name'>'')
+#### *GET* @app.route('/universities/all/view/<country'>'/'<'name'>'')
 Get the list of all universities in the given country and with a given name
 
 ### REST-based Service Interface
