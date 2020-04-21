@@ -32,7 +32,7 @@ This will work on the following aspects of Cloud applications:
 #### *GET* @app.route('/universities/all')
 Get the details of all the universities.
 
-#### *GET* @app.route('/universities/all/view/<country>'/'<'name'>'')
+#### *GET* @app.route('/universities/all/view/<country>/<name>')
 Get the list of all universities in the given country and with a given name
 
 ### REST-based Service Interface
@@ -43,10 +43,10 @@ The Home page of Universities WebApp
 #### *GET* @app.route('/universities')
 Get the list of all universities from the database.
 
-#### *GET* @app.route('/universities/name/'<'name'>'')
+#### *GET* @app.route('/universities/name/<name>')
 Get the list of all universities with a given name. 
 
-#### *GET* @app.route('/universities/country/'<'country'>'')
+#### *GET* @app.route('/universities/country/<country>')
 Get the list of all universities in a given country
 
 #### *POST* @app.route('/universities')
@@ -345,6 +345,21 @@ Date: Mon, 20 Apr 2020 19:45:16 GMT
 {"message":"University deleted: /universities/University of South London"}
 ```
 
+### Cleanup
+
+1. Delete the Kubernetes deployment and LoadBalancer service using below commands:
+
+```
+sudo microk8s.kubectl delete deployment covidapp-deployment
+sudo microk8s.kubectl delete service covidapp-deployment
+```
+
+2. Delete the Cassandra database instance by:
+
+```
+sudo docker rm cassandra-test
+```
+
 NOTE: Public DNS will vary. 
 
 ## Universities Web App built with:
@@ -358,3 +373,11 @@ NOTE: Public DNS will vary.
 ## Author
 
 Alenso Joy Valiaveettil
+	
+
+
+
+
+
+
+
